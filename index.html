@@ -205,11 +205,11 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
 
 .hero-roles{
   font-family:var(--c);
-  font-size:11px;
-  letter-spacing:0.22em;
+  font-size:15px;
+  letter-spacing:0.28em;
   text-transform:uppercase;
   color:var(--amber);
-  opacity:0.85;
+  opacity:0.9;
   text-shadow:0 1px 8px rgba(0,0,0,0.3);
   will-change:auto;
 }
@@ -488,8 +488,8 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
   }
   .hero-roles{
     display:block;
-    font-size:10px;
-    letter-spacing:0.16em;
+    font-size:13px;
+    letter-spacing:0.2em;
     line-height:1.8;
     color:var(--amber);
     text-align:center;
@@ -578,14 +578,42 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 ::-webkit-scrollbar-thumb:hover{ background:var(--amber-l) }
 *{ scrollbar-width:thin; scrollbar-color:var(--amber) transparent }
 
-/* ── INTRO LOADER ── */
+/* ── INTRO LOADER / GATE ── */
 #loader{
   position:fixed;inset:0;z-index:999999;
-  background:#080402;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  transition:opacity 0.9s ease, visibility 0.9s ease;
+  pointer-events:all;
+  overflow:hidden;
 }
-#loader.done{ opacity:0;visibility:hidden;pointer-events:none; }
+/* Two gate panels */
+#loader-gate-l,#loader-gate-r{
+  position:absolute;top:0;bottom:0;
+  width:50%;
+  background:#080402;
+  transition:transform 1.1s cubic-bezier(0.76,0,0.24,1);
+  z-index:1;
+}
+#loader-gate-l{left:0;transform:translateX(0)}
+#loader-gate-r{right:0;transform:translateX(0)}
+/* Subtle amber vertical edge on each panel */
+#loader-gate-l::after{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(200,131,42,0.6) 50%,transparent);
+}
+#loader-gate-r::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(200,131,42,0.6) 50%,transparent);
+}
+/* Open state */
+#loader.done #loader-gate-l{transform:translateX(-100%)}
+#loader.done #loader-gate-r{transform:translateX(100%)}
+#loader.done{pointer-events:none}
+/* Content sits above panels */
+#loader-content{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity 0.35s ease;
+}
+#loader.done #loader-content{opacity:0}
 #loader-name{
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   font-weight:900;font-size:clamp(48px,8vw,96px);
@@ -596,21 +624,40 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 }
 #loader-sub{
   font-family:'Courier New',Courier,monospace;
-  font-size:11px;letter-spacing:0.38em;text-transform:uppercase;
-  color:rgba(200,131,42,0.5);margin-top:16px;
-  opacity:0;
-  text-align:center;
+  font-size:13px;letter-spacing:0.38em;text-transform:uppercase;
+  color:rgba(200,131,42,0.5);margin-top:18px;
+  opacity:0;text-align:center;
   animation:loaderFade 0.8s ease 0.8s forwards;
 }
-#loader-line{
-  position:absolute;bottom:0;left:0;height:2px;
-  background:linear-gradient(90deg,transparent,#C8832A,transparent);
-  animation:loaderLine 1.6s ease 0.2s forwards;
-  width:0%;
+/* Percentage counter */
+#loader-pct{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-weight:900;font-size:clamp(64px,12vw,160px);
+  letter-spacing:-0.04em;
+  color:rgba(200,131,42,0.12);
+  line-height:1;margin-top:16px;
+  opacity:0;
+  animation:loaderFade 0.5s ease 0.6s forwards;
+  position:relative;
+}
+#loader-pct span{
+  color:rgba(200,131,42,0.9);
+  font-size:0.38em;letter-spacing:0.05em;
+  vertical-align:super;margin-left:4px;
+  position:relative;top:-0.15em;
+}
+/* Progress bar */
+#loader-bar-wrap{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:rgba(200,131,42,0.1);
+}
+#loader-bar{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,transparent,#C8832A,rgba(200,131,42,0.6));
+  transition:width 0.05s linear;
 }
 @keyframes loaderUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes loaderFade{from{opacity:0}to{opacity:1}}
-@keyframes loaderLine{from{width:0%}to{width:100%}}
 
 /* ── PORTRAIT EDGE MASKING ── */
 .portrait-wrap::after{
@@ -672,11 +719,16 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 </style>
 </head>
 <body>
-<!-- INTRO LOADER -->
+<!-- INTRO LOADER / GATE -->
 <div id="loader">
-  <div id="loader-name">YEHOSUA</div>
-  <div id="loader-sub">DJ · Producer · Founder<br>· Spiritual Guide</div>
-  <div id="loader-line"></div>
+  <div id="loader-gate-l"></div>
+  <div id="loader-gate-r"></div>
+  <div id="loader-content">
+    <div id="loader-name">YEHOSUA</div>
+    <div id="loader-sub">DJ &middot; Producer &middot; Founder &middot; Spiritual Guide</div>
+    <div id="loader-pct">0<span>%</span></div>
+  </div>
+  <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
 </div>
 <!-- GRAIN OVERLAY -->
 <svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#noise)"/></svg>
@@ -1195,16 +1247,69 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 
 
 /* ═══════════════════════════════════════════
-   1. INTRO LOADER
+   1. INTRO LOADER / GATE
 ═══════════════════════════════════════════ */
 (function(){
-  var loader = document.getElementById('loader');
+  var loader  = document.getElementById('loader');
+  var pctEl   = document.getElementById('loader-pct');
+  var barEl   = document.getElementById('loader-bar');
   if(!loader) return;
+
+  var DURATION = 2600; // ms to count 0→100
+  var startTime = null;
+  var pageLoaded = false;
+
+  function easeInOut(t){ return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+
+  function tick(now){
+    if(!startTime) startTime = now;
+    var raw = Math.min((now - startTime) / DURATION, pageLoaded ? 1 : 0.92);
+    var eased = easeInOut(raw);
+    var val = Math.round(eased * 100);
+    // Update counter (keep <span>%</span> intact)
+    if(pctEl) pctEl.innerHTML = val + '<span>%</span>';
+    // Update bar
+    if(barEl) barEl.style.width = val + '%';
+
+    if(raw < (pageLoaded ? 1 : 0.92)){
+      requestAnimationFrame(tick);
+    } else if(pageLoaded){
+      // Hit 100 — brief pause, then open gate
+      setTimeout(openGate, 260);
+    } else {
+      // Stalled at ~92% — wait for page load
+      // (rAF loop paused; will resume in onLoad)
+    }
+  }
+
+  function openGate(){
+    loader.classList.add('done');
+    setTimeout(function(){ loader.style.display = 'none'; }, 1300);
+  }
+
+  // Start counting immediately
+  requestAnimationFrame(tick);
+
   window.addEventListener('load', function(){
-    setTimeout(function(){ loader.classList.add('done'); }, 3800);
+    pageLoaded = true;
+    // If counter already stalled near 92, resume from now
+    var resumeFrom = performance.now();
+    var remaining = DURATION * 0.08; // last 8%
+    function finish(now){
+      var t = Math.min((now - resumeFrom) / remaining, 1);
+      var val = Math.round((0.92 + t*0.08) * 100);
+      if(pctEl) pctEl.innerHTML = val + '<span>%</span>';
+      if(barEl) barEl.style.width = val + '%';
+      if(t < 1){ requestAnimationFrame(finish); }
+      else { setTimeout(openGate, 260); }
+    }
+    requestAnimationFrame(finish);
   });
-  // Fallback: remove after 3.5s no matter what
-  setTimeout(function(){ loader.classList.add('done'); }, 6500);
+
+  // Absolute fallback
+  setTimeout(function(){
+    if(!loader.classList.contains('done')) openGate();
+  }, 7000);
 })();
 
 /* ═══════════════════════════════════════════
