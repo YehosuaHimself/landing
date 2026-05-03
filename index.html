@@ -91,7 +91,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:var(--bg);
+  background:transparent;
 }
 
 #portrait-img{
@@ -100,9 +100,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   object-fit:cover;
   object-position:center 15%;
   display:block;
-  /* Key: multiply blend makes cream photo bg vanish into page */
-  mix-blend-mode:multiply;
-  filter:contrast(1.05) brightness(0.96);
+  mix-blend-mode:normal;
+  filter:contrast(1.02) brightness(0.98);
   transition:opacity 0.8s ease;
 }
 
