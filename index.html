@@ -223,7 +223,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
 
 /* ── FULL-WIDTH RULE ── */
 .fw-rule{
-  width:100%;max-width:1260px;margin:0 auto;
+  width:calc(100% - 80px);margin:0 40px;
   height:1px;
   background:linear-gradient(90deg,transparent,rgba(200,131,42,0.35),transparent);
 }
@@ -755,6 +755,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 
   <!-- Layer 2: Name text — fastest parallax, sits over portrait -->
   <div class="hero-text" id="hero-text">
+    <span class="hero-label">— Welcome To —</span>
     <div class="hero-name">
       <span class="n1">YEHOSUA</span>
       <span class="n2">HIMSELF</span>
@@ -763,11 +764,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 
   <!-- Bottom info -->
   <div class="hero-bottom">
-    <p class="hero-roles">DJ · Sonic Wanderer · Spiritual Guide</p>
-    <div class="scroll-row" style="opacity:0;animation:fadeIn 1s ease 4.2s forwards">
-      <div class="s-dot"></div>
-      <span class="s-txt">Scroll</span>
-    </div>
+    <p class="hero-roles">DJ · Producer · Sonic Wanderer · Founder · Spiritual Guide</p>
   </div>
 </section>
 
@@ -803,8 +800,8 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 <!-- THREE WORLDS -->
 <section id="worlds">
   <div class="worlds-head">
-    <h2 class="worlds-title">The Work</h2>
-    <span class="worlds-sub">— Three Founding Projects —</span>
+    <h2 class="worlds-title">Enter The Real World</h2>
+    <span class="worlds-sub">— Founding Projects —</span>
   </div>
   <div class="worlds-grid">
     <div class="world-card" id="wc1" onclick="window.open('https://wanderkind.love','_blank')">
@@ -830,7 +827,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
       <span class="lbl">04 · LIFE</span>
       <div class="amber-line"></div>
       <h3 class="world-title">KGD EMBASSY</h3>
-      <p class="world-desc">A sovereign institution where sacred law and civil order find a common ground — open to nations, embassies, and individuals seeking a threshold between the two.</p>
+      <p class="world-desc">Where Church and State meet.</p>
       <p class="world-tags">Education · Development · International Exchange · Tours · Political &amp; Religious Transformation</p>
       <a href="https://kgd-embassy.org" target="_blank" rel="noopener noreferrer" class="btn-outline" onclick="event.stopPropagation()">→ KGD-EMBASSY.ORG</a>
     </div>
@@ -884,7 +881,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
   });
 
   /* Ring lags behind with lerp */
-  const ease = 0.08;
+  const ease = 0.12;
   (function loop(){
     rx += (mx - rx) * ease;
     ry += (my - ry) * ease;
@@ -933,7 +930,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
       dvx:0, dvy:0, // cursor impulse accumulator
       size: isPulse ? 2+Math.random()*1.8 : isMid ? 1.2+Math.random()*1.4 : 0.5+Math.random()*1.0,
       life:0,
-      maxOp: isPulse ? 0.75+Math.random()*0.2 : isMid ? 0.38+Math.random()*0.35 : 0.18+Math.random()*0.22,
+      maxOp: isPulse ? 0.55+Math.random()*0.3 : isMid ? 0.25+Math.random()*0.35 : 0.1+Math.random()*0.2,
       speed: 0.0018+Math.random()*0.0028,
       isPulse, isMid,
       phase: Math.random()*Math.PI*2,
@@ -1019,7 +1016,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 
       ctx.beginPath();
       ctx.arc(p.x,p.y,Math.max(0.1,s),0,Math.PI*2);
-      ctx.fillStyle=`rgba(139,80,8,${a})`;
+      ctx.fillStyle=`rgba(180,108,18,${a})`;
       ctx.fill();
 
       if(p.life>=1||p.y<-20) P[i]=makeP();
