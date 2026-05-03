@@ -34,7 +34,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
 
 
 /* ── CUSTOM GOLDEN CURSOR ── */
-*{ cursor: none !important; }
+*,*::before,*::after{ cursor:none!important; }
 #cur-dot{
   position:fixed;
   width:8px; height:8px;
@@ -116,7 +116,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   gap:12px;
   border:1px dashed rgba(200,131,42,0.35);
   background:rgba(200,131,42,0.03);
-  cursor:pointer;
+  cursor:none;
   transition:background 0.3s, border-color 0.3s;
 }
 #drop-zone:hover,#drop-zone.dragover{background:rgba(200,131,42,0.08);border-color:var(--amber)}
@@ -336,7 +336,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   padding:38px 32px 44px;
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
-  cursor:pointer;text-decoration:none;
+  cursor:none;text-decoration:none;
   transform-style:preserve-3d;
   transition:border-color 0.3s,box-shadow 0.3s,transform 0.15s ease-out;
   will-change:transform;
@@ -509,7 +509,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
     grid-template-columns:1fr;
     padding:28px 20px 32px;
     gap:28px;
-    cursor:pointer;
+    cursor:none;
   }
   .ghost-num{font-size:140px;top:-16px}
   #sonic .lbl{font-size:13px;letter-spacing:0.2em}
@@ -772,7 +772,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 
 <!-- SONIC PORTAL -->
 <section id="sonic">
-  <div class="sonic-card" id="sonic-card" onclick="window.open('https://yehosua.love','_blank')" style="cursor:pointer">
+  <div class="sonic-card" id="sonic-card" onclick="window.open('https://yehosua.love','_blank')" style="cursor:none">
     <span class="ghost-num">01</span>
     <div>
       <span class="lbl">01 · DJ &amp; Producer</span>
