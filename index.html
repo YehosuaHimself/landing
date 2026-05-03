@@ -85,9 +85,10 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
 
 /* Portrait itself — bleeds into cream bg, no box */
 .portrait-wrap{
-  position:relative;
-  width:clamp(320px, 48vw, 680px);
-  height:clamp(420px, 85vh, 900px);
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -98,10 +99,10 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center 15%;
+  object-position:center top;
   display:block;
   mix-blend-mode:normal;
-  filter:contrast(1.02) brightness(0.98);
+  filter:brightness(0.88) contrast(1.04) saturate(0.92);
   transition:opacity 0.8s ease;
 }
 
@@ -664,10 +665,11 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
   content:'';
   position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 110% 55% at 50% 0%,   transparent 55%, var(--bg) 100%),
-    radial-gradient(ellipse 55%  110% at 0%   50%, transparent 55%, var(--bg) 100%),
-    radial-gradient(ellipse 55%  110% at 100% 50%, transparent 55%, var(--bg) 100%),
-    radial-gradient(ellipse 110% 55% at 50% 100%, transparent 40%, var(--bg) 85%);
+    linear-gradient(to bottom,
+      rgba(211,190,168,0.25) 0%,
+      rgba(211,190,168,0)    25%,
+      rgba(211,190,168,0)    65%,
+      rgba(211,190,168,0.55) 100%);
   pointer-events:none;z-index:2;
 }
 
