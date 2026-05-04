@@ -1,19 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" style="background:#080402">
 <head>
-
 <style>
-/* ══ CURSOR NUKE v2 ══════════════════════════════════════════════════ */
-:root{--cur-none:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==") 0 0,none}
-*,*::before,*::after,html,body,a,button,input,select,textarea,label,
-summary,details,[role=button],[role=link],[tabindex],[contenteditable],
-[draggable],::placeholder,::file-selector-button,:hover,:focus,:active,
-:focus-visible,:disabled,[disabled],[readonly],
-input[type=text],input[type=password],input[type=email],
-input[type=search],input[type=number],input[type=checkbox],
-input[type=radio],input[type=file],input[type=submit],input[type=reset],
-input[type=button],select option,iframe,video,canvas,svg,img{cursor:var(--cur-none)!important}
-/* ════════════════════════════════════════════════════════════════════ */
+/* CURSOR KILL */
+*,*::before,*::after,html,body,a,button,input,select,textarea,[tabindex],[contenteditable]{cursor:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==") 0 0,none!important}
 *,*::before,*::after{cursor:url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7') 0 0,none!important}</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -575,13 +565,11 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 }
 
 
-
-/* ══ CURSOR NUKE — v2 · permanent · no system cursor ever ══════════════════
-   Three-layer approach:
-   1. Inline style on <html> via JS (handles dynamic iframes / shadow DOM)
-   2. CSS !important on every selector imaginable
-   3. ::file-selector-button, ::webkit-scrollbar-thumb, etc.
-   The 1px transparent PNG satisfies browsers requiring a url() value.        */
+/* ── HIDE CUSTOM CURSOR ON TOUCH DEVICES ── */
+@media(hover:none),(pointer:coarse){
+  #cur-dot,#cur-ring{ display:none !important; }
+  *{ cursor:auto !important; }
+}
 
 /* ── GOLD SCROLLBAR ── */
 ::-webkit-scrollbar{ width:6px }
@@ -736,16 +724,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 }
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-
-/* ══ CURSOR NUKE — v2 · permanent · no system cursor ever ══════════════════
-   Three-layer approach:
-   1. Inline style on <html> via JS (handles dynamic iframes / shadow DOM)
-   2. CSS !important on every selector imaginable
-   3. ::file-selector-button, ::webkit-scrollbar-thumb, etc.
-   The 1px transparent PNG satisfies browsers requiring a url() value.        */
-
 </style>
-<script>/* CURSOR NUKE JS */(function(){var s='cursor:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==") 0 0,none!important';function k(){document.documentElement.style.cssText+=';'+s;if(document.body)document.body.style.cssText+=';'+s;}k();document.addEventListener('DOMContentLoaded',k);if(typeof MutationObserver!=='undefined')new MutationObserver(k).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['style','class']});})();</script>
 </head>
 <body>
 <!-- INTRO LOADER / GATE -->
