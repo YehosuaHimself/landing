@@ -1375,21 +1375,34 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
     var originalHTML = el.innerHTML;
     /* Flatten to plain text for scrambling; treat newlines as spaces */
     var original = el.textContent.trim().replace(/\n/g, ' ').replace(/  +/g, ' ');
+    /* Detect <br> position so layout stays stable during scramble */
+    var brIndex = -1;
+    if (/<br\s*\/?>/i.test(originalHTML)) {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = originalHTML.split(/<br\s*\/?>/i)[0];
+      brIndex = tmp.textContent.trim().length;
+    }
     var done = false;
     function run(){
       if(done) return;
       done = true;
       var iterations = 0;
       var iv = setInterval(function(){
-        el.textContent = original.split('').map(function(ch, i){
+        var scrambled = original.split('').map(function(ch, i){
           if(!/[A-Za-z0-9]/.test(ch)) return ch;
           if(iterations / maxIter > i / original.length) return ch;
           return chars[Math.floor(Math.random() * chars.length)];
         }).join('');
         iterations++;
+        /* Preserve <br> position so line breaks never shift mid-animation */
+        if(brIndex > -1){
+          el.innerHTML = scrambled.slice(0, brIndex) + '<br>' + scrambled.slice(brIndex);
+        } else {
+          el.textContent = scrambled;
+        }
         if(iterations >= maxIter + original.length){
           clearInterval(iv);
-          el.innerHTML = originalHTML; /* restore <br> tags etc */
+          el.innerHTML = originalHTML; /* restore original markup */
         }
       }, interval_ms);
     }
