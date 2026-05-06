@@ -3,8 +3,8 @@
 <head>
 <style>
 /* CURSOR KILL */
-*,*::before,*::after,html,body,a,button,input,select,textarea,[tabindex],[contenteditable]{cursor:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==") 0 0,none!important}
-*,*::before,*::after{cursor:url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7') 0 0,none!important}</style>
+*,*::before,*::after,html,body,a,button,input,select,textarea,[tabindex],[contenteditable]{cursor:none!important}
+*,*::before,*::after{cursor:none!important}</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>YEHOSUA HIMSELF</title>
@@ -38,7 +38,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
 
 
 /* ── CUSTOM GOLDEN CURSOR ── */
-*,*::before,*::after{ cursor:url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7') 0 0,none!important; }
+*,*::before,*::after{ cursor:none!important; }
 #cur-dot{
   position:fixed;
   width:8px; height:8px;
@@ -1172,6 +1172,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
     document.getElementById('wc1'),
     document.getElementById('wc2'),
     document.getElementById('wc3'),
+    document.getElementById('wc4'),
     document.getElementById('ig-pill'),
   ].filter(Boolean);
 
