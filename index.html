@@ -96,6 +96,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   align-items:center;
   justify-content:center;
   background:transparent;
+  will-change:transform;
+  transform:translateZ(0);
 }
 
 #portrait-img{
@@ -107,6 +109,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   mix-blend-mode:normal;
   filter:brightness(0.82) contrast(1.06) saturate(0.88);
   transition:opacity 0.8s ease;
+  will-change:transform;
+  backface-visibility:hidden;
+  transform:translateZ(0);
 }
 
 /* Drop zone shown when no photo */
@@ -209,7 +214,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
 
 .hero-roles{
   font-family:var(--c);
-  font-size:15px;
+  font-size:18px;
   letter-spacing:0.28em;
   text-transform:uppercase;
   color:var(--amber);
@@ -223,7 +228,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   opacity:0;animation:fadeIn 1s ease 1.8s forwards;
 }
 .s-dot{width:5px;height:5px;border-radius:50%;background:var(--amber);animation:pulse 2.2s ease-in-out infinite}
-.s-txt{font-family:var(--c);font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-soft)}
+.s-txt{font-family:var(--c);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-soft)}
 
 /* ── FULL-WIDTH RULE ── */
 .fw-rule{
@@ -265,7 +270,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
 }
 
 .lbl{
-  font-family:var(--c);font-size:10px;letter-spacing:0.32em;
+  font-family:var(--c);font-size:13px;letter-spacing:0.32em;
   text-transform:uppercase;color:var(--amber);
   display:block;margin-bottom:16px;
 }
@@ -280,20 +285,20 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
 }
 
 .sonic-sub{
-  font-family:var(--c);font-size:12.5px;letter-spacing:0.18em;
+  font-family:var(--c);font-size:14px;letter-spacing:0.18em;
   text-transform:uppercase;color:rgba(255,255,255,0.4);
   margin-bottom:28px;
 }
 
 .sonic-body{
-  font-family:var(--h);font-size:15px;font-weight:300;font-style:italic;
-  color:rgba(245,239,230,0.6);line-height:2;
+  font-family:var(--h);font-size:15px;font-weight:300;font-style:normal;
+  color:rgba(245,239,230,0.6);line-height:1.8;
   margin-bottom:36px;max-width:430px;
 }
 
 .stats-row{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:44px}
 .sn{font-family:var(--h);font-weight:800;font-size:34px;color:var(--amber);display:block}
-.sl{font-family:var(--c);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);display:block}
+.sl{font-family:var(--c);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);display:block}
 
 .btn-solid{
   display:inline-flex;align-items:center;gap:10px;
@@ -328,7 +333,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   text-transform:uppercase;letter-spacing:-0.02em;
   color:var(--ink);margin-bottom:6px;
 }
-.worlds-sub{font-family:var(--c);font-size:20px;letter-spacing:0.24em;text-transform:uppercase;color:#8B5500}
+.worlds-sub{font-family:var(--c);font-size:28px;letter-spacing:0.20em;text-transform:uppercase;color:#8B5500}
 
 .worlds-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 
@@ -367,12 +372,12 @@ body{background:var(--bg);color:var(--ink);font-family:var(--h);font-weight:300;
   color:#fff;line-height:1;margin-bottom:16px;
 }
 .world-desc{
-  font-family:var(--h);font-size:14px;font-weight:300;font-style:italic;
+  font-family:var(--h);font-size:14px;font-weight:300;font-style:normal;
   color:rgba(245,239,230,0.55);line-height:1.85;margin-bottom:14px;flex:1;
 }
-.world-sub{font-family:var(--c);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,131,42,0.45);margin-top:8px;font-style:italic}
+.world-sub{font-family:var(--c);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,131,42,0.45);margin-top:8px;font-style:normal}
 .world-tags{
-  font-family:var(--c);font-size:9.5px;letter-spacing:0.15em;
+  font-family:var(--c);font-size:12px;letter-spacing:0.15em;
   text-transform:uppercase;color:rgba(200,131,42,0.65);
   margin-bottom:26px;line-height:1.9;
 }
@@ -409,9 +414,9 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 .f-rule{width:100%;height:1px;background:linear-gradient(90deg,rgba(200,131,42,0.5),transparent);margin-bottom:36px}
 .f-inner{display:flex;justify-content:space-between;align-items:flex-end}
 .f-name{font-family:var(--h);font-weight:800;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:var(--ink);margin-bottom:7px}
-.f-meaning{font-family:var(--c);font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(28,14,2,0.72)}
+.f-meaning{font-family:var(--c);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(28,14,2,0.72)}
 .f-theway{font-family:var(--h);font-weight:900;font-size:11px;letter-spacing:0.36em;text-transform:uppercase;color:var(--amber);text-align:right;margin-bottom:6px}
-.f-copy{font-family:var(--c);font-size:9.5px;color:rgba(28,14,2,0.72);text-align:left}
+.f-copy{font-family:var(--c);font-size:11px;color:rgba(28,14,2,0.72);text-align:left}
 
 /* ── KEYFRAMES ── */
 @keyframes flipDown{from{transform:perspective(900px) rotateX(-90deg);opacity:1}to{transform:perspective(900px) rotateX(0deg);opacity:1}}
@@ -492,7 +497,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
   }
   .hero-roles{
     display:block;
-    font-size:13px;
+    font-size:14px;
     letter-spacing:0.2em;
     line-height:1.8;
     color:var(--amber);
@@ -501,7 +506,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
     white-space:normal;
     word-break:break-word;
   }
-  .s-txt{font-size:9px;letter-spacing:0.24em}
+  .s-txt{font-size:11px;letter-spacing:0.24em}
 
   /* Sections */
   #sonic,#worlds,#social,footer{padding-left:18px;padding-right:18px}
@@ -534,7 +539,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 
   /* Worlds */
   .worlds-title{font-size:clamp(24px,7vw,40px)}
-  .worlds-sub{font-size:14px;letter-spacing:0.18em}
+  .worlds-sub{font-size:18px;letter-spacing:0.18em}
   .worlds-head{margin-bottom:24px}
   .world-card{padding:26px 20px 30px}
   .world-ghost{font-size:80px;top:-6px}
@@ -559,7 +564,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
   .sonic-card{padding:24px 16px 28px}
   .sonic-headline{font-size:34px}
   .sonic-sub{font-size:9px;letter-spacing:0.1em}
-  .worlds-sub{font-size:12px;letter-spacing:0.14em}
+  .worlds-sub{font-size:15px;letter-spacing:0.14em}
   .world-card{padding:22px 16px 26px}
   .sn{font-size:22px}
 }
@@ -782,7 +787,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
   <div class="sonic-card" id="sonic-card" onclick="window.open('https://yehosua.love','_blank')" style="cursor:none">
     <span class="ghost-num">01</span>
     <div>
-      <span class="lbl">01 · DJ &amp; Producer</span>
+      <span class="lbl">01 - DJ &amp; Producer</span>
       <h2 class="sonic-headline">The<br>Sonic World</h2>
       <p class="sonic-sub">Psytechno · Psytrance · SGD Recordings · Sonic Wanderer</p>
       <p class="sonic-body">The man who walked 10,000 km across Europe with a backpack and a DJ mixer since 1st of January 2025 — and who is still walking.</p>
@@ -813,7 +818,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
   <div class="worlds-grid">
     <div class="world-card" id="wc1" onclick="window.open('https://wanderkind.love','_blank')">
       <span class="world-ghost">02</span>
-      <span class="lbl">02 · WAY</span>
+      <span class="lbl">02 - Founder</span>
       <div class="amber-line"></div>
       <h3 class="world-title">WANDERKIND APP</h3>
       <p class="world-desc">Walk the ancient ways — Stay with those who walk them too.</p>
@@ -822,7 +827,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
     </div>
     <div class="world-card" id="wc2" onclick="window.open('https://acimurtext.love','_blank')">
       <span class="world-ghost">03</span>
-      <span class="lbl">03 · TRUTH</span>
+      <span class="lbl">03 - Creator</span>
       <div class="amber-line"></div>
       <h3 class="world-title">URTEXT AI</h3>
       <p class="world-desc">The original 1965 manuscript. Unedited. As first received. An AI built to illuminate what was lost.</p>
@@ -831,7 +836,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
     </div>
     <div class="world-card" id="wc3" onclick="window.open('https://kgd-embassy.org','_blank')">
       <span class="world-ghost">04</span>
-      <span class="lbl">04 · LIFE</span>
+      <span class="lbl">04 - Initiator</span>
       <div class="amber-line"></div>
       <h3 class="world-title">KGD EMBASSY</h3>
       <p class="world-desc">Where Church and State meet.</p>
@@ -840,7 +845,7 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
     </div>
     <div class="world-card" id="wc4" onclick="window.open('https://pncbread.love','_blank')">
       <span class="world-ghost">05</span>
-      <span class="lbl">05 · BREAD</span>
+      <span class="lbl">05 - Baker</span>
       <div class="amber-line"></div>
       <h3 class="world-title">PNC BREAD</h3>
       <p class="world-desc">Daily bread. Real nourishment.</p>
@@ -1062,16 +1067,12 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
 })();
 
 /* ═══════════════════════════════════════════
-   PARALLAX + NATIVE SCROLL
-════════════════════════════════════════ */
-/* ═══════════════════════════════════════════
-   PARALLAX — NATIVE SCROLL + RAF
+   PARALLAX — SMOOTH LERP RAF LOOP
 ═══════════════════════════════════════════ */
 (function(){
   const portrait   = document.getElementById('hero-portrait');
   const heroText   = document.getElementById('hero-text');
   const ghostNum   = document.querySelector('.ghost-num');
-  const sonicHead  = document.querySelector('.sonic-headline');
   const worldsHead = document.querySelector('.worlds-head');
 
   function absTop(el){
@@ -1084,43 +1085,53 @@ footer{padding:0 56px 60px;max-width:1260px;margin:0 auto}
   let pos = {};
   function cachePos(){
     pos.ghost      = absTop(ghostNum);
-    pos.sonicHead  = absTop(sonicHead);
     pos.worldsHead = absTop(worldsHead);
   }
   cachePos();
   window.addEventListener('resize', cachePos, {passive:true});
 
   const isMobile = () => window.innerWidth < 768;
-  let ticking = false;
+
+  // Current and target lerp values
+  let curPortrait = 0, tgtPortrait = 0;
+  let curText     = 0, tgtText     = 0;
+  let curGhost    = 0, tgtGhost    = 0;
+  let curWorlds   = 0, tgtWorlds   = 0;
+  const LERP = 0.08; // smoothing factor — lower = smoother
 
   window.addEventListener('scroll', () => {
-    if(ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const sy = window.scrollY;
-      const vh = window.innerHeight;
-
-      if(!isMobile()){
-        portrait.style.transform = `translateY(${sy * 0.38}px)`;
-        heroText.style.transform = `translateY(${sy * -0.12}px)`;
-      } else {
-        portrait.style.transform = '';
-        heroText.style.transform = '';
-      }
-
-      if(ghostNum){
-        const rel = sy - pos.ghost + vh;
-        ghostNum.style.transform = `translateZ(-20px) translateY(${rel * -0.05}px)`;
-      }
-      /* sonicHead parallax removed — was causing headline/sub to merge on scroll */
-      if(worldsHead){
-        const rel = sy - pos.worldsHead + vh;
-        worldsHead.style.transform = `translateY(${rel * 0.035}px)`;
-      }
-
-      ticking = false;
-    });
+    const sy = window.scrollY;
+    const vh = window.innerHeight;
+    if(!isMobile()){
+      tgtPortrait = sy * 0.38;
+      tgtText     = sy * -0.12;
+    } else {
+      tgtPortrait = 0;
+      tgtText     = 0;
+    }
+    if(ghostNum){
+      const rel = sy - pos.ghost + vh;
+      tgtGhost = rel * -0.05;
+    }
+    if(worldsHead){
+      const rel = sy - pos.worldsHead + vh;
+      tgtWorlds = rel * 0.035;
+    }
   }, {passive:true});
+
+  (function loop(){
+    curPortrait += (tgtPortrait - curPortrait) * LERP;
+    curText     += (tgtText     - curText)     * LERP;
+    curGhost    += (tgtGhost    - curGhost)    * LERP;
+    curWorlds   += (tgtWorlds   - curWorlds)   * LERP;
+
+    if(portrait) portrait.style.transform = `translateY(${curPortrait.toFixed(2)}px)`;
+    if(heroText) heroText.style.transform  = `translateY(${curText.toFixed(2)}px)`;
+    if(ghostNum) ghostNum.style.transform  = `translateZ(-20px) translateY(${curGhost.toFixed(2)}px)`;
+    if(worldsHead) worldsHead.style.transform = `translateY(${curWorlds.toFixed(2)}px)`;
+
+    requestAnimationFrame(loop);
+  })();
 
   function revealOnScroll(els, delayStep){
     els.forEach((el, i) => {
