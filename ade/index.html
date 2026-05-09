@@ -664,24 +664,29 @@
   /* ── Export PDF button ── */
   .export-btn {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: 28px;
+    right: 28px;
     background: var(--amber);
     color: #F7F2EA;
     border: none;
-    padding: 13px 22px 12px;
+    padding: 17px 30px 16px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 11px;
-    letter-spacing: 0.22em;
+    font-size: 13px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     z-index: 9999;
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 3px 18px rgba(139,94,26,0.40);
-    transition: background 0.2s, transform 0.1s;
+    gap: 10px;
+    box-shadow: 0 4px 28px rgba(139,94,26,0.55), 0 0 0 1px rgba(139,94,26,0.25);
+    transition: background 0.2s, transform 0.12s, box-shadow 0.2s;
+    cursor: none !important;
   }
-  .export-btn:hover { background: #A06B1E; transform: translateY(-1px); }
+  .export-btn:hover {
+    background: #A06B1E;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 36px rgba(139,94,26,0.65), 0 0 0 1px rgba(139,94,26,0.35);
+  }
   .export-btn:active { transform: translateY(0); }
 
 
@@ -945,7 +950,7 @@
   <!-- PULL QUOTE -->
   <div class="pull-quote">
     <blockquote>"I AM SILENCE. I AM SOUND."</blockquote>
-    <cite>— Yehosua Himself · 10,247 km walked · 18 months · still walking</cite>
+    <cite>— Yehosua Himself · <span id="km-cite">10,247</span> km walked · 18 months · still walking</cite>
   </div>
 
   <!-- STATS -->
@@ -1137,10 +1142,11 @@
   var baseKm = 10247;
   var kmPerMs = 20 / 86400000;
   function tick() {
-    var el = document.getElementById('km-live');
-    if (!el) return;
     var km = Math.floor(baseKm + (Date.now() - base) * kmPerMs);
-    el.textContent = '+' + km.toLocaleString('en-US');
+    var el = document.getElementById('km-live');
+    if (el) el.textContent = '+' + km.toLocaleString('en-US');
+    var cite = document.getElementById('km-cite');
+    if (cite) cite.textContent = km.toLocaleString('en-US');
   }
   tick();
   setInterval(tick, 4000);
@@ -1190,22 +1196,23 @@
   })();
 })();
 
-// ── Stats count-up on scroll into view ──
+// ── Stats count-up on scroll into view (including live km) ──
 (function() {
   var animated = false;
+  var DURATION = 1600;
+
   function countUp() {
     if (animated) return;
     animated = true;
+
+    // Animate static stats (15+, 67+, 18+)
     document.querySelectorAll('.stat-num[data-target]').forEach(function(el) {
       var target = parseInt(el.getAttribute('data-target'));
       var suffix = el.getAttribute('data-suffix') || '';
-      var start = 0;
-      var duration = 1400;
       var startTime = null;
       function step(ts) {
         if (!startTime) startTime = ts;
-        var progress = Math.min((ts - startTime) / duration, 1);
-        // ease-out cubic
+        var progress = Math.min((ts - startTime) / DURATION, 1);
         var eased = 1 - Math.pow(1 - progress, 3);
         el.textContent = Math.floor(eased * target) + suffix;
         if (progress < 1) requestAnimationFrame(step);
@@ -1213,7 +1220,29 @@
       }
       requestAnimationFrame(step);
     });
+
+    // Animate km-live: count up from 0 to current live value
+    var kmEl = document.getElementById('km-live');
+    var citeEl = document.getElementById('km-cite');
+    if (kmEl) {
+      var base = new Date('2026-05-09T12:00:00Z');
+      var baseKm = 10247;
+      var kmPerMs = 20 / 86400000;
+      var targetKm = Math.floor(baseKm + (Date.now() - base) * kmPerMs);
+      var startTime = null;
+      function stepKm(ts) {
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / DURATION, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var val = Math.floor(eased * targetKm);
+        kmEl.textContent = '+' + val.toLocaleString('en-US');
+        if (citeEl) citeEl.textContent = val.toLocaleString('en-US');
+        if (progress < 1) requestAnimationFrame(stepKm);
+      }
+      requestAnimationFrame(stepKm);
+    }
   }
+
   var row = document.querySelector('.stats-row');
   if (row && 'IntersectionObserver' in window) {
     new IntersectionObserver(function(entries) {
