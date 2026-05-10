@@ -694,8 +694,19 @@
   .export-btn:active { transform: translateY(0); }
 
 
-  /* ── Custom square cursor ── */
-  * { cursor: none !important; }
+  /* ── Custom square cursor — force none on every element & state ── */
+  *,
+  *::before,
+  *::after,
+  a, a:link, a:visited, a:hover, a:active, a:focus,
+  button, button:hover, button:active, button:focus,
+  input, input:hover, input:focus,
+  select, select:hover, select:focus,
+  textarea, textarea:hover, textarea:focus,
+  label, label:hover,
+  [role="button"], [role="button"]:hover,
+  [onclick], [onclick]:hover,
+  html, body { cursor: none !important; }
   #cur-main {
     position: fixed;
     width: 10px; height: 10px;
@@ -1186,10 +1197,16 @@
   var main = document.getElementById('cur-main');
   var lag  = document.getElementById('cur-lag');
   var mx = 0, my = 0, lx = 0, ly = 0;
-  document.addEventListener('mousemove', function(e) {
+  function moveCursor(e) {
     mx = e.clientX; my = e.clientY;
     main.style.left = mx + 'px';
     main.style.top  = my + 'px';
+  }
+  document.addEventListener('mousemove', moveCursor);
+  document.addEventListener('mouseenter', moveCursor);
+  // Force cursor:none on any element that gets native cursor on hover
+  document.addEventListener('mouseover', function(e) {
+    if (e.target && e.target.style) e.target.style.cursor = 'none';
   });
   (function loop() {
     lx += (mx - lx) * 0.10;
