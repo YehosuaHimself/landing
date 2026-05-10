@@ -800,24 +800,39 @@
   ═══════════════════════════════════════════════════════ */
   @media (max-width: 800px) {
 
-    html { background-color: #8a6840; }
+    /* ── Base ── */
+    html { background-color: #F7F2EA !important; }
 
     body {
       width: 100% !important;
       min-height: unset !important;
-      padding: 28px 20px 32px !important;
+      padding: 24px 18px 40px !important;
     }
 
-    /* Header */
+    /* ── Background: let inner fill full mobile width ── */
+    .bg-inner {
+      width: 100% !important;
+      left: 0 !important;
+      transform: none !important;
+      background-position: center 18% !important;
+    }
+    .bg-outer img {
+      width: 100% !important;
+      height: 100vh !important;
+      object-fit: cover !important;
+      object-position: center 20% !important;
+    }
+
+    /* ── Header ── */
     header {
       flex-direction: column;
       align-items: flex-start;
-      gap: 14px;
-      padding-bottom: 18px;
-      margin-bottom: 20px;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    h1 { font-size: 52px !important; line-height: 0.88; }
+    h1 { font-size: 46px !important; line-height: 0.88; }
 
     .header-right {
       text-align: left;
@@ -825,70 +840,72 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .ade-date { display: inline; margin-left: 6px; }
+    .roles { font-size: 7.5px; letter-spacing: 0.13em; }
 
-    .roles { font-size: 7px; letter-spacing: 0.14em; }
+    /* ── Pull quote ── */
+    .pull-quote { padding: 16px 14px; margin-bottom: 18px; }
+    .pull-quote blockquote { font-size: 15px; line-height: 1.45; }
 
-    /* Pull quote */
-    .pull-quote { padding: 20px 16px; margin-bottom: 20px; }
-    .pull-quote blockquote { font-size: 15px; }
-
-    /* Stats */
+    /* ── Stats: 2×2 grid ── */
     .stats-row {
       grid-template-columns: 1fr 1fr !important;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .stat:nth-child(2) { border-right: none; }
     .stat:nth-child(3) { border-top: 1px solid var(--rule); border-right: 1px solid var(--rule); }
     .stat:nth-child(4) { border-top: 1px solid var(--rule); border-right: none; }
-    .stat-num { font-size: 26px; }
+    .stat { padding: 14px 10px !important; }
+    .stat-num { font-size: 28px; }
+    .stat-label { font-size: 7.5px; }
 
-    /* Two-column → single column */
+    /* ── Two-column → single column ── */
     .body-grid {
       grid-template-columns: 1fr !important;
       gap: 0 !important;
     }
     .col-divider { display: none; }
-    .body-grid > div:first-child p:last-of-type { flex: unset; }
 
-    /* Section labels */
-    .section-label { font-size: 8.5px; }
+    /* ── Typography ── */
+    .section-label { font-size: 8.5px; margin-bottom: 10px !important; padding-bottom: 6px !important; }
+    p { font-size: 12.5px; line-height: 1.75; margin-bottom: 10px; }
 
-    p { font-size: 12px; line-height: 1.75; }
-
-    /* Photo block: center it */
+    /* ── Photo / sig block ── */
     .photo-sig-block {
-      justify-content: center !important;
-      margin-top: 24px !important;
-      padding-bottom: 8px;
+      justify-content: flex-start !important;
+      margin-top: 20px !important;
+      padding-bottom: 4px;
+      gap: 14px;
     }
+    .photo-frame { height: 140px !important; }
+    .sig-seal-col { margin-right: 0 !important; }
 
-    /* Release bar */
+    /* ── Release bar ── */
     .release-bar {
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
+      margin-top: 6px;
+      margin-bottom: 14px !important;
+      padding: 8px 12px !important;
     }
     .release-title { font-size: 12px; }
     .release-sub { font-size: 7px; width: 100%; }
 
-    /* Tracks */
-    .tracks { margin-bottom: 20px; }
+    /* ── Tracks ── */
+    .tracks { margin-bottom: 18px; }
     .track {
       grid-template-columns: 1fr !important;
       gap: 4px 0 !important;
-      padding: 14px 0;
+      padding: 13px 0;
     }
     .track-tag { margin-bottom: 4px; }
     .track-body { font-size: 12px; }
 
-    /* Projects strip → 2-col */
-    .projects {
-      grid-template-columns: 1fr 1fr !important;
-    }
+    /* ── Projects: 2-col ── */
+    .projects { grid-template-columns: 1fr 1fr !important; }
     .project:nth-child(2) { border-right: none; }
     .project:nth-child(3) { border-top: 1px solid var(--rule); }
     .project:nth-child(4) { border-top: 1px solid var(--rule); border-right: none; }
@@ -897,38 +914,58 @@
       border-top: 1px solid var(--rule);
       border-right: none;
     }
+    .project { padding: 12px 8px !important; }
     .project-name { font-size: 10px; }
+    .project-desc { font-size: 8px !important; }
 
-    /* Deadlines → stack */
+    /* ── Deadlines: stack ── */
     .deadline-row {
       flex-direction: column !important;
       gap: 6px !important;
+      margin-bottom: 18px;
     }
-    .deadline { padding: 14px 12px; }
+    .deadline { padding: 13px 12px; }
     .deadline-date { font-size: 13px; }
 
-    /* Footer */
+    /* ── Footer ── */
     footer {
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
-      padding-top: 14px;
+      gap: 8px;
+      padding-top: 12px;
     }
     .footer-right { text-align: left !important; }
 
-    /* Hide cursor on touch */
-    * { cursor: auto !important; }
+    /* ── Cursor: restore native on touch ── */
+    *, *::before, *::after,
+    a, a:hover, button, button:hover,
+    input, select, label { cursor: auto !important; }
     #cur-main, #cur-lag { display: none !important; }
+
+    /* ── Export button: finger-friendly ── */
     .export-btn {
       position: fixed;
-      bottom: 16px; right: 16px;
-      font-size: 9px;
-      padding: 10px 16px 9px;
+      bottom: 18px;
+      right: 18px;
+      left: 18px;
+      font-size: 11px;
+      padding: 14px 20px;
+      justify-content: center;
+      letter-spacing: 0.2em;
     }
 
-    /* Corner marks */
+    /* ── Corner marks & decorations ── */
     .corner-br, .corner-bl { display: none; }
     body::after { display: none; }
+  }
+
+  /* ── Extra-small phones (≤ 430px) ── */
+  @media (max-width: 430px) {
+    h1 { font-size: 38px !important; }
+    body { padding: 20px 14px 40px !important; }
+    .pull-quote blockquote { font-size: 13.5px; }
+    .stat-num { font-size: 24px; }
+    .photo-frame { height: 120px !important; }
   }
 </style>
 </head>
